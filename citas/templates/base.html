@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Barbería de barrio{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+  </head>
+  <body>
+    <header>
+      <h1>Barbería de barrio</h1>
+      <p>Calle San Martin Nro 240, Tartagal-Salta</p>
+    </header>
+
+    <nav>
+      <a href="#servicios" class="active">Servicios</a>
+      <a href="#resenas">Reseñas</a>
+      <a href="#portafolio">Portafolio</a>
+      <a href="#detalles">Detalles</a>
+      <a href="#como-llegar">Cómo llegar</a>
+    </nav>
+
+    <main>{% block content %} {% endblock %}</main>
+  </body>
+</html>
