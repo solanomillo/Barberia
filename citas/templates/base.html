@@ -4,24 +4,134 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}Barbería de barrio{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     
+    <!-- Optimización: Carga de CSS en orden correcto -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/hero-banner.css' %}">       
+    <link rel="stylesheet" href="{% static 'css/estilos_responsive.css' %}">
+    
+    <!-- Preconexión para mejorar performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Barbería de barrio en Tartagal-Salta. Servicios profesionales de barbería y cuidado personal.">
+    <meta name="keywords" content="barbería, Tartagal, Salta, corte de pelo, afeitado">
   </head>
-  <body>
-    <header>
-      <h1>Barbería de barrio</h1>
-      <p>Calle San Martin Nro 240, Tartagal-Salta</p>
+  <body >
+    <!-- Header con Bootstrap -->
+    <body class="d-flex flex-column h-100">
+      <!-- Skip to content link for accessibility -->
+      <a href="#main-content" class="visually-hidden-focusable">Saltar al contenido principal</a>
+      
+      <!-- Header -->
+      <header class="bg-dark text-white py-3">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <div class="d-flex flex-column flex-md-row align-items-center">
+                <a href="/" class="text-decoration-none text-white">
+                  <h1 class="h3 mb-1 mb-md-0 me-md-3">Barbería de Barrio</h1>
+                </a>
+                <address class="mb-0 d-flex align-items-center">
+                  <i class="fas fa-map-marker-alt me-2"></i>
+                  <span>Calle San Martin Nro 240, Tartagal-Salta</span>
+                </address>
+              </div>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-2 mt-lg-0">
+              <div class="d-flex justify-content-center justify-content-lg-end">
+                <a href="tel:+5493871234567" class="btn btn-outline-light btn-sm me-2">
+                  <i class="fas fa-phone-alt me-1"></i> Llamar
+                </a>
+                <a href="https://wa.me/5493871234567" class="btn btn-success btn-sm" target="_blank" rel="noopener">
+                  <i class="fab fa-whatsapp me-1"></i> WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
     </header>
 
-    <nav>
-      <a href="#servicios" class="active">Servicios</a>
-      <a href="#resenas">Reseñas</a>
-      <a href="#portafolio">Portafolio</a>
-      <a href="#detalles">Detalles</a>
-      <a href="#como-llegar">Cómo llegar</a>
+    <!-- Navbar responsive con Bootstrap -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav w-100 justify-content-between">
+            <li class="nav-item">
+              <a class="nav-link active" href="#servicios"><i class="fas fa-cut d-lg-none me-2"></i>Servicios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#resenas"><i class="fas fa-star d-lg-none me-2"></i>Reseñas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#portafolio"><i class="fas fa-images d-lg-none me-2"></i>Portafolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#detalles"><i class="fas fa-info-circle d-lg-none me-2"></i>Detalles</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#como-llegar"><i class="fas fa-map-marked-alt d-lg-none me-2"></i>Ubicación</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
 
-    <main>{% block content %} {% endblock %}</main>
+    <main class="py-4">
+      <div class="container">
+        {% block content %} 
+        <!-- Contenido principal aquí -->
+        {% endblock %}
+      </div>
+    </main>
+
+    <!-- Footer mejorado -->
+    <footer class="bg-dark text-white py-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4 mb-md-0">
+            <h5>Horario de atención</h5>
+            <ul class="list-unstyled">
+              <li>Lunes a Viernes: 9:00 - 20:00</li>
+              <li>Sábados: 9:00 - 14:00</li>
+              <li>Domingos: Cerrado</li>
+            </ul>
+          </div>
+          <div class="col-md-4 mb-4 mb-md-0">
+            <h5>Contacto</h5>
+            <ul class="list-unstyled">
+              <li><i class="fas fa-phone me-2"></i> 387 123-4567</li>
+              <li><i class="fab fa-whatsapp me-2"></i> 387 123-4567</li>
+              <li><i class="fas fa-envelope me-2"></i> contacto@barberiabarrio.com</li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h5>Redes sociales</h5>
+            <div class="social-links">
+              <a href="#" class="text-white me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+              <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+              <a href="#" class="text-white"><i class="fab fa-tiktok fa-lg"></i></a>
+            </div>
+          </div>
+        </div>
+        <hr class="my-4 bg-secondary">
+        <div class="text-center">
+          <p class="mb-0">&copy; 2025 Barbería de barrio. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts al final del body para mejor performance -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
   </body>
 </html>

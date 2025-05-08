@@ -1,0 +1,47 @@
+/* Estilos para el contenedor de imágenes cuadradas */
+.square-img-container {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* Mantiene relación 1:1 */
+    overflow: hidden;
+}
+
+.square-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Efecto hover para las imágenes */
+.card:hover .square-img {
+    transform: scale(1.05);
+}
+
+/* Estilos para la tarjeta */
+.card {
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+}
+
+/* Media queries para responsive */
+@media (max-width: 768px) {
+    .col-md-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 576px) {
+    .col-sm-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}

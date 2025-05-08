@@ -1,100 +1,341 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Barbería de barrio{% endblock %}
+{% block title %}Barbería de barrio - Reservas{% endblock %}
 
 {% block content %}
 
-<!-- Imagen principal (puedes usar una imagen desde static más adelante) -->
-<img src="{% static 'imagenes/bar.jpeg' %}" alt="Barbería" style="width:100%; border-radius:8px; margin-bottom: 1rem;">
-
-<!-- Sección: Servicios -->
-<section id="servicios">
-    <h2>Reservar cita</h2>
-    <form method="post">
-        {% csrf_token %}
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-            {{ form.nombre_cliente.label_tag }} {{ form.nombre_cliente }}
-            {{ form.email.label_tag }} {{ form.email }}
-
-            {{ form.fecha.label_tag }} {{ form.fecha }}
-            {{ form.hora.label_tag }} {{ form.hora }}
-
-            {{ form.servicio.label_tag }} {{ form.servicio }}
-            {{ form.empleado.label_tag }} {{ form.empleado }}
+<!-- Hero Image premium -->
+<div class="hero-container container-fluid px-0 mb-5">
+    <div class="row g-0">
+        <div class="col-12">
+            <img src="{% static 'imagenes/bar.jpeg' %}" 
+                 alt="Interior de la barbería" 
+                 class="img-fluid w-100 hero-banner">
+            <div class="hero-overlay">
+                <div class="hero-content container">
+                    <h1 class="hero-title">Barbería de Barrio</h1>
+                    <p class="hero-subtitle">Profesionales del corte clásico y moderno</p>
+                    <i class="fas fa-scissors hero-icon"></i>
+                </div>
+            </div>
         </div>
-        <div style="margin-top: 1rem;">
-            {{ form.nota.label_tag }} {{ form.nota }}
+    </div>
+</div>
+
+<!-- Sección: Reservar cita -->
+<section id="servicios" class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-lg">
+                    <div class="card-header bg-dark text-white py-3">
+                        <h2 class="h4 mb-0 text-center"><i class="fas fa-calendar-alt me-2"></i>Reservar Cita</h2>
+                    </div>
+                    <div class="card-body p-4 p-md-5">
+                        <form method="post" id="citaForm" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            
+                            <div class="row g-3">
+                                <!-- Información del Cliente -->
+                                <div class="col-md-6">
+                                    <label for="{{ form.nombre_cliente.id_for_label }}" class="form-label">Nombre completo</label>
+                                    {{ form.nombre_cliente }}
+                                    <div class="invalid-feedback">
+                                        Por favor ingresa tu nombre
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="{{ form.telefono.id_for_label }}" class="form-label">Teléfono</label>
+                                    {{ form.telefono }}
+                                </div>
+                                
+                                <div class="col-12">
+                                    <label for="{{ form.correo.id_for_label }}" class="form-label">Correo electrónico</label>
+                                    {{ form.correo }}
+                                    <div class="invalid-feedback">
+                                        Por favor ingresa un email válido
+                                    </div>
+                                </div>
+                                
+                                <!-- Selección de Fecha y Peluquero -->
+                                <div class="col-md-6">
+                                    <label for="{{ form.fecha.id_for_label }}" class="form-label">Fecha</label>
+                                    {{ form.fecha }}
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="{{ form.empleado.id_for_label }}" class="form-label">Peluquero</label>
+                                    {{ form.empleado }}
+                                </div>
+                                
+                                <!-- Horario y Servicio -->
+                                <div class="col-md-6">
+                                    <label for="{{ form.hora.id_for_label }}" class="form-label">Hora disponible</label>
+                                    {{ form.hora }}
+                                    <div id="horariosInfo" class="mt-2 small">
+                                        <div id="horariosOcupados" class="text-danger"></div>
+                                        <div id="horariosDisponibles" class="text-success"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="{{ form.servicio.id_for_label }}" class="form-label">Servicio</label>
+                                    {{ form.servicio }}
+                                </div>
+                                
+                                <!-- Botón de Reserva -->
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-primary btn-lg w-100 py-3 fw-bold">
+                                        <i class="fas fa-calendar-check me-2"></i>Confirmar Reserva
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button type="submit" style="margin-top: 1rem;">Reservar</button>
-    </form>
+    </div>
 </section>
-
-<hr>
 
 <!-- Sección: Reseñas -->
-<section id="resenas">
-    <h2>Reseñas</h2>
-    <p>⭐⭐⭐⭐⭐ Excelente atención, muy recomendable.</p>
-    <p>⭐⭐⭐⭐ Me gustó el corte y el ambiente del lugar.</p>
+<section id="resenas" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5 display-5 fw-bold">Reseñas de Clientes</h2>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-3">
+                            <div class="text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <small class="text-muted">Hace 1 semana</small>
+                        </div>
+                        <p class="card-text">"Excelente atención, muy recomendable. El barbero fue muy profesional y el lugar impecable."</p>
+                        <p class="text-end mb-0 fw-bold">- Juan Pérez</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-3">
+                            <div class="text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <small class="text-muted">Hace 3 días</small>
+                        </div>
+                        <p class="card-text">"Me gustó mucho el corte y el ambiente del lugar. Volveré seguro."</p>
+                        <p class="text-end mb-0 fw-bold">- Carlos Gómez</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <a href="#" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-pen me-2"></i>Dejar una reseña
+            </a>
+        </div>
+    </div>
 </section>
-
-<hr>
 
 <!-- Sección: Portafolio -->
-<section id="portafolio">
-    <h2>Portafolio</h2>
-    <p>Algunos de nuestros trabajos recientes:</p>
-    <div class="portafolio-grid">
-        {% for img in imagenes %}
-            <div>
-                <img src="{{ img.imagen.url }}" alt="{{ img.titulo }}">
-                {% if img.titulo %}
-                    <p style="text-align: center;">{{ img.titulo }}</p>
-                {% endif %}
+<section id="portafolio" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4 display-5 fw-bold">Nuestros Trabajos</h2>
+        <p class="text-center text-muted mb-5">Algunos de nuestros trabajos recientes</p>
+        
+        <div class="row g-4">
+            {% for img in imagenes %}
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="square-img-container">
+                        <img src="{{ img.imagen.url }}" 
+                             class="card-img-top square-img" 
+                             alt="{{ img.titulo|default:'Trabajo de barbería' }}" 
+                             loading="lazy">
+                    </div>
+                    {% if img.titulo %}
+                    <div class="card-body text-center">
+                        <h5 class="card-title mb-0">{{ img.titulo }}</h5>
+                    </div>
+                    {% endif %}
+                </div>
             </div>
-        {% empty %}
-            <p>No hay imágenes aún.</p>
-        {% endfor %}
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info text-center py-4">
+                    <i class="fas fa-images fa-2x mb-3"></i>
+                    <p class="mb-0">No hay imágenes aún. Pronto subiremos nuestros trabajos.</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
-    
 </section>
 
-<hr>
-
-<!-- Sección: Detalles -->
-<section id="detalles">
-    <h2>Detalles</h2>
-    <p><strong>Dirección:</strong> Calle San Martin Nro 240, Tartagal-Salta</p>
-    <p><strong>Horario:</strong> Lunes a sábado - 10:00 a 20:00</p>
-    <p><strong>Teléfono:</strong></p>
+<!-- Sección: Información de Contacto -->
+<section id="detalles" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5 display-5 fw-bold">Contacto</h2>
+        <div class="row g-4">
+            <div class="col-md-4 text-center">
+                <div class="p-4 border rounded-3 h-100">
+                    <i class="fas fa-map-marker-alt fa-3x mb-3 text-primary"></i>
+                    <h4>Dirección</h4>
+                    <p class="mb-0">Calle San Martin Nro 240<br>Tartagal-Salta</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="p-4 border rounded-3 h-100">
+                    <i class="fas fa-clock fa-3x mb-3 text-primary"></i>
+                    <h4>Horario</h4>
+                    <p class="mb-0">Lunes a Viernes: 9:00 - 20:00<br>
+                    Sábados: 9:00 - 14:00<br>
+                    Domingos: Cerrado</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="p-4 border rounded-3 h-100">
+                    <i class="fas fa-phone-alt fa-3x mb-3 text-primary"></i>
+                    <h4>Contacto</h4>
+                    <p class="mb-0">
+                        <a href="tel:+5493871234567" class="text-decoration-none d-block">387 123-4567</a>
+                        <a href="mailto:contacto@barberiabarrio.com" class="text-decoration-none">contacto@barberiabarrio.com</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-
-<hr>
 
 <!-- Sección: Cómo llegar -->
-<section id="como-llegar">
-    <h2>¿Cómo llegar?</h2>
-    <p style="text-align: center;">Nos encontramos en San Martin Nro 240, Tartagal-Salta</p>
-    <div style="display: flex; justify-content: center;">
-        <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3171.495956055696!2d-4.426501484688342!3d36.71911317996833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72f79c86c77271%3A0x6938c8310ae20620!2sC.%20Abrebadero%2C%205%2C%2029012%20M%C3%A1laga%2C%20Espa%C3%B1a!5e0!3m2!1ses!2ses!4v1683125712345!5m2!1ses!2ses" 
-            width="100%" 
-            height="300" 
-            style="border:0; border-radius: 8px;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>      
+<section id="como-llegar" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5 display-5 fw-bold">¿Cómo llegar?</h2>
+        <p class="text-center mb-5 lead">Nos encontramos en San Martin Nro 240, Tartagal-Salta</p>
         
-    </div>
-    <div style="display: flex; justify-content: center; margin-top: 1rem;">
-        <a href="https://www.google.com/maps?q=Calle+Abrebadero+5,+Málaga" 
-           target="_blank" 
-           style="background-color: #d11a2a; color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 5px; font-weight: bold;">
-            Abrir en Google Maps
-        </a>
+        <div class="ratio ratio-16x9 rounded-3 shadow mb-4">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3171.495956055696!2d-4.426501484688342!3d36.71911317996833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72f79c86c77271%3A0x6938c8310ae20620!2sC.%20Abrebadero%2C%205%2C%2029012%20M%C3%A1laga%2C%20Espa%C3%B1a!5e0!3m2!1ses!2ses!4v1683125712345!5m2!1ses!2ses" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        
+        <div class="text-center">
+            <a href="https://www.google.com/maps?q=Calle+Abrebadero+5,+Málaga" 
+               target="_blank" 
+               class="btn btn-danger btn-lg px-5">
+                <i class="fas fa-map-marked-alt me-2"></i>Abrir en Google Maps
+            </a>
+        </div>
     </div>
 </section>
 
-
+<!-- JavaScript para gestión de horarios - Versión corregida -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const fechaInput = document.getElementById('id_fecha');
+        const empleadoSelect = document.getElementById('id_empleado');
+        const horaSelect = document.getElementById('id_hora');
+        const horariosOcupados = document.getElementById('horariosOcupados');
+        const horariosDisponibles = document.getElementById('horariosDisponibles');
+        
+        function actualizarHorarios() {
+            const fecha = fechaInput.value;
+            const empleadoId = empleadoSelect.value;
+            
+            if (fecha && empleadoId) {
+                // Mostrar indicador de carga
+                horaSelect.innerHTML = '<option value="">Cargando horarios...</option>';
+                horariosOcupados.textContent = '';
+                horariosDisponibles.textContent = 'Cargando disponibilidad...';
+                
+                fetch(`/get_horarios_disponibles/?fecha=${fecha}&empleado_id=${empleadoId}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Error al obtener horarios');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Limpiar select
+                        horaSelect.innerHTML = '';
+                        
+                        // Añadir opción por defecto
+                        const defaultOption = document.createElement('option');
+                        defaultOption.value = '';
+                        defaultOption.textContent = '-- Selecciona una hora --';
+                        horaSelect.appendChild(defaultOption);
+                        
+                        // Añadir horas disponibles
+                        if (data.horas_disponibles && data.horas_disponibles.length > 0) {
+                            data.horas_disponibles.forEach(hora => {
+                                const option = document.createElement('option');
+                                // Asegurar formato correcto (HH:MM:00 para TimeField)
+                                const horaValue = hora.includes(':') ? hora : hora + ':00';
+                                option.value = horaValue.length === 5 ? horaValue + ':00' : horaValue;
+                                option.textContent = horaValue.length === 8 ? horaValue.substring(0, 5) : horaValue;
+                                horaSelect.appendChild(option);
+                            });
+                            
+                            horariosDisponibles.innerHTML = `
+                                <i class="fas fa-check-circle text-success me-1"></i>
+                                Horarios disponibles: ${data.horas_disponibles.join(', ')}
+                            `;
+                        } else {
+                            horariosDisponibles.innerHTML = `
+                                <i class="fas fa-exclamation-circle text-warning me-1"></i>
+                                No hay horarios disponibles para esta fecha
+                            `;
+                        }
+                        
+                        // Mostrar horarios ocupados
+                        if (data.horas_ocupadas && data.horas_ocupadas.length > 0) {
+                            horariosOcupados.innerHTML = `
+                                <i class="fas fa-times-circle text-danger me-1"></i>
+                                Horarios ocupados: ${data.horas_ocupadas.join(', ')}
+                            `;
+                        } else {
+                            horariosOcupados.innerHTML = '';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        horaSelect.innerHTML = '<option value="">Error al cargar horarios</option>';
+                        horariosOcupados.innerHTML = '';
+                        horariosDisponibles.innerHTML = `
+                            <i class="fas fa-exclamation-triangle text-danger me-1"></i>
+                            Error al obtener disponibilidad
+                        `;
+                    });
+            } else {
+                horaSelect.innerHTML = '<option value="">Selecciona fecha y peluquero</option>';
+                horariosOcupados.textContent = '';
+                horariosDisponibles.textContent = '';
+            }
+        }
+        
+        // Event listeners
+        fechaInput.addEventListener('change', actualizarHorarios);
+        empleadoSelect.addEventListener('change', actualizarHorarios);
+        
+        // Inicializar si ya hay valores seleccionados
+        if (fechaInput.value && empleadoSelect.value) {
+            actualizarHorarios();
+        }
+    });
+    </script>
 {% endblock %}

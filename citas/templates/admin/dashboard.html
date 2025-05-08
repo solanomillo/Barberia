@@ -1,0 +1,109 @@
+{% extends "admin/base_site.html" %}
+{% load jazzmin %}
+
+{% block content_title %}
+<h2 class="text-dark mb-4 pb-2 border-bottom border-warning">
+    <i class="fas fa-calendar-alt text-warning mr-2"></i>
+    Turnos de la Barbería - {{ hoy|date:"d/m/Y" }}
+</h2>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Citas para hoy -->
+    <div class="col-lg-6 mb-4">
+        <div class="card border-dark">
+            <div class="card-header bg-dark text-white">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-cut text-warning mr-2"></i>
+                    Citas para hoy
+                </h3>
+            </div>
+            <div class="card-body bg-light">
+                {% if citas_hoy %}
+                <div class="table-responsive">
+                    <table class="table table-hover table-sm">
+                        <thead class="bg-secondary text-white">
+                            <tr>
+                                <th class="align-middle">Hora</th>
+                                <th class="align-middle">Cliente</th>
+                                <th class="align-middle">Servicio</th>
+                                <th class="align-middle">Barbero</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cita in citas_hoy %}
+                            <tr class="border-start border-warning border-3">
+                                <td class="fw-bold">{{ cita.hora|time:"H:i" }}</td>
+                                <td>{{ cita.nombre_cliente }}</td>
+                                <td>
+                                    <span class="badge bg-warning text-dark">
+                                        {{ cita.servicio.nombre }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-secondary text-white">
+                                        {{ cita.empleado.nombre|default:"-" }}
+                                    </span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="alert alert-warning d-flex align-items-center mb-0">
+                    <i class="fas fa-exclamation-circle me-2"></i>
+                    No hay citas programadas para hoy
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Próximas citas -->
+    <div class="col-lg-6 mb-4">
+        <div class="card border-dark">
+            <div class="card-header bg-dark text-white">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-calendar-plus text-info mr-2"></i>
+                    Próximas citas
+                </h3>
+            </div>
+            <div class="card-body bg-light">
+                {% if citas_proximas %}
+                <div class="table-responsive">
+                    <table class="table table-hover table-sm">
+                        <thead class="bg-secondary text-white">
+                            <tr>
+                                <th class="align-middle">Fecha</th>
+                                <th class="align-middle">Hora</th>
+                                <th class="align-middle">Cliente</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cita in citas_proximas %}
+                            <tr class="border-start border-info border-3">
+                                <td class="fw-bold">{{ cita.fecha|date:"d/m/Y" }}</td>
+                                <td>{{ cita.hora|time:"H:i" }}</td>
+                                <td>
+                                    <span class="badge bg-info text-dark">
+                                        {{ cita.nombre_cliente }}
+                                    </span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="alert alert-info d-flex align-items-center mb-0">
+                    <i class="fas fa-info-circle me-2"></i>
+                    No hay próximas citas programadas
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

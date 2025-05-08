@@ -1,0 +1,93 @@
+/* hero-banner.css */
+/* Estilos para el contenedor principal */
+.hero-container {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilos para la imagen del banner */
+.hero-banner {
+    width: 100%;
+    height: 70vh;
+    min-height: 400px;
+    max-height: 600px;
+    object-fit: cover;
+    filter: brightness(0.9);
+    transition: transform 0.3s ease;
+}
+
+/* Efecto hover para la imagen */
+.hero-banner:hover {
+    transform: scale(1.01);
+}
+
+/* Overlay con gradiente */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 3rem;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
+}
+
+/* Contenedor del contenido */
+.hero-content {
+    width: 100%;
+    text-align: center;
+    padding-top: 3rem;
+}
+
+/* Estilos para el título */
+.hero-title {
+    font-size: calc(1.525rem + 3.3vw);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+@media (min-width: 1200px) {
+    .hero-title {
+        font-size: 4rem;
+    }
+}
+
+/* Estilos para el subtítulo */
+.hero-subtitle {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: white;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilos para el icono de tijeras */
+.hero-icon {
+    color: white;
+    font-size: 2rem;
+}
+
+/* Media queries para responsive */
+@media (max-width: 768px) {
+    .hero-banner {
+        height: 50vh !important;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .hero-overlay {
+        padding-top: 1.5rem;
+    }
+    
+    .hero-content {
+        padding-top: 1.5rem;
+    }
+}
