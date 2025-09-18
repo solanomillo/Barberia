@@ -80,7 +80,7 @@ El sistema permite a los clientes reservar turnos de manera rápida y sencilla, 
     python manage.py runserver
     ```
 # 📂 Estructura recomendada del proyecto
-    ```text
+   
         barberia/
     ├── barberia/              # Proyecto Django
     ├── citas/                # App principal-Archivos estáticos (CSS, JS, imágenes)
@@ -91,12 +91,12 @@ El sistema permite a los clientes reservar turnos de manera rápida y sencilla, 
     ├── README.md
     └── screenshots/           # Capturas de pantalla
 
-    ```
 
 ## 🖼️ Capturas de pantalla
-    <img src="screenshots/imagen1.png" alt="App_barberia" width="500">
-    <img src="screenshots/imagen2.png" alt="App_barberia" width="500">
-    <img src="screenshots/imagen3.png" alt="App_barberia" width="500">
+![App_barberia](screenshots/imagen1.png)
+![App_barberia](screenshots/imagen2.png)
+![App_barberia](screenshots/imagen3.png)
+
     
 # 👨‍💻 Autor
 **Julio Solano**  
