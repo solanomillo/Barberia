@@ -19,7 +19,7 @@ El sistema permite a los clientes reservar turnos de manera rápida y sencilla, 
 
 ## 🚀 Tecnologías utilizadas  
 
-- **Backend:** Django 4.x (Python)  
+- **Backend:** Django 4.2 (Python)  
 - **Base de datos:** MySQL  
 - **Frontend:** HTML5, CSS3, JavaScript, Bootstrap  
 - **Admin personalizado:** Jazmin (tema moderno para Django Admin)  
