@@ -17,6 +17,14 @@ header {
     padding: 1.5rem;
     text-align: center;
 }
+header a {
+  line-height: 0; /* Elimina espacio fantasma alrededor de imágenes */
+}
+
+header img {
+  display: block; /* Elimina espacio inferior inherente a las imágenes inline */
+}
+
 
 nav {
     display: flex;
@@ -38,12 +46,26 @@ nav a {
 }
 
 nav a:hover, nav a.active {
-    background-color: #d11a2a;
+    background-color: #0591f5;
     color: white;
 }
 
 main {
     padding: 2rem;
+}
+
+/* Estilo para la imagen */
+.img-estilizada {
+    border-radius: 20px; /* Ajusta el valor (ej: 50% para círculo) */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 13); /* Sombra personalizada */
+    transition: transform 0.3s, box-shadow 0.3s; /* Efecto hover opcional */
+    border: 3px solid #ffffff; /* Borde blanco opcional */
+}
+
+/* Efecto hover (opcional) */
+.img-estilizada:hover {
+    transform: scale(1.02); /* Ligero zoom */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
 form {
@@ -61,7 +83,7 @@ form input, form select, form textarea {
 }
 
 button {
-    background-color: #d11a2a;
+    background-color: #03b3f3;
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -71,7 +93,7 @@ button {
 }
 
 button:hover {
-    background-color: #a31320;
+    background-color: #06a3f1;
 }
 
 section {

@@ -22,33 +22,38 @@
     <meta name="description" content="Barbería de barrio en Tartagal-Salta. Servicios profesionales de barbería y cuidado personal.">
     <meta name="keywords" content="barbería, Tartagal, Salta, corte de pelo, afeitado">
   </head>
-  <body >
+  
     <!-- Header con Bootstrap -->
-    <body class="d-flex flex-column h-100">
+  <body class="d-flex flex-column h-100">
       <!-- Skip to content link for accessibility -->
       <a href="#main-content" class="visually-hidden-focusable">Saltar al contenido principal</a>
       
       <!-- Header -->
       <header class="bg-dark text-white py-3">
-        <div class="container">
+        <div class="container pt-0 pb-0"> <!-- Elimina padding top y bottom -->
           <div class="row align-items-center">
             <div class="col-lg-8">
               <div class="d-flex flex-column flex-md-row align-items-center">
-                <a href="/" class="text-decoration-none text-white">
-                  <h1 class="h3 mb-1 mb-md-0 me-md-3">Barbería de Barrio</h1>
-                </a>
+               <a href="/" class="text-decoration-none text-white d-flex align-items-center">
+                  <img src="{% static 'imagenes/imagenp.jpg' %}" 
+                      alt="imagen de la barberia" 
+                      height="100px" 
+                      width="100px"
+                      style="mix-blend-mode: multiply;"
+                      class="align-self-center"> <!-- Centrado vertical sin márgenes -->
+               </a>
                 <address class="mb-0 d-flex align-items-center">
                   <i class="fas fa-map-marker-alt me-2"></i>
-                  <span>Calle San Martin Nro 240, Tartagal-Salta</span>
+                  <span>Calle Jérico, Tartagal-Salta</span>
                 </address>
               </div>
             </div>
             <div class="col-lg-4 text-lg-end mt-2 mt-lg-0">
               <div class="d-flex justify-content-center justify-content-lg-end">
-                <a href="tel:+5493871234567" class="btn btn-outline-light btn-sm me-2">
+                <a href="#" class="btn btn-outline-light btn-sm me-2">
                   <i class="fas fa-phone-alt me-1"></i> Llamar
                 </a>
-                <a href="https://wa.me/5493871234567" class="btn btn-success btn-sm" target="_blank" rel="noopener">
+                <a href="#" class="btn btn-success btn-sm" target="_blank" rel="noopener">
                   <i class="fab fa-whatsapp me-1"></i> WhatsApp
                 </a>
               </div>
@@ -109,9 +114,9 @@
           <div class="col-md-4 mb-4 mb-md-0">
             <h5>Contacto</h5>
             <ul class="list-unstyled">
-              <li><i class="fas fa-phone me-2"></i> 387 123-4567</li>
-              <li><i class="fab fa-whatsapp me-2"></i> 387 123-4567</li>
-              <li><i class="fas fa-envelope me-2"></i> contacto@barberiabarrio.com</li>
+              <li><i class="fas fa-phone me-2"></i> +549-2984734500</li>
+              <li><i class="fab fa-whatsapp me-2"></i> +549-2984734550</li>
+              <li><i class="fas fa-envelope me-2"></i> usuario@gmail.com</li>
             </ul>
           </div>
           <div class="col-md-4">
@@ -125,7 +130,7 @@
         </div>
         <hr class="my-4 bg-secondary">
         <div class="text-center">
-          <p class="mb-0">&copy; 2025 Barbería de barrio. Todos los derechos reservados.</p>
+          <p class="mb-0">&copy; 2025 Solano Julio. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
